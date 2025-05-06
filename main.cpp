@@ -48,7 +48,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
     return written;
 }
 
-int8_t makeJSONURL(URL &url) {
+int32_t makeJSONURL(URL &url) {
     // Find all slashes in URL (such as https://boards.4chan.org/c/thread/4322780)
     std::vector<int16_t> slashes;
     for (int i = 0; i < url.address.length(); ++i) {
@@ -76,7 +76,7 @@ int8_t makeJSONURL(URL &url) {
     return 0;
 }
 
-int32_t downloadJSON(URL &url) {
+enum JSON_CODES downloadJSON(URL &url) {
     // Download JSON
     CURL *curl;
     CURLcode res;
@@ -105,7 +105,7 @@ int32_t downloadJSON(URL &url) {
 
     // Check if JSON file isn't just a 302 found
     std::string comp_string = "<html>"; // JSON wouldn't start with this
-    for (uint8_t i = 0; i < comp_string.length(); ++i) {
+    for (uint32_t i = 0; i < comp_string.length(); ++i) {
         if (url.jsonContents[i] != comp_string[i]) {
             return JSON_SUCCESS;
         }
@@ -114,7 +114,7 @@ int32_t downloadJSON(URL &url) {
     return JSON_302;
 }
 
-int8_t getImageFilenames(URL &url,
+int32_t getImageFilenames(URL &url,
         std::map<std::string, uint64_t> &imageFilenames, bool bypass) {
     // Stop downloading if thread is archived
     if (url.jsonData["posts"][0]["archived"] == 1 && bypass == false) {
