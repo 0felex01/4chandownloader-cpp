@@ -11,9 +11,7 @@ using json = nlohmann::json;
 
 #define TOO_MANY_REQUESTS_SIZE 17
 
-#define JSON_SUCCESS 0
-#define JSON_CURL_EASY_FAILED -1
-#define JSON_302 -2
+enum JSON_CODES {JSON_SUCCESS, JSON_CURL_EASY_FAILED, JSON_302};
 
 class URL {
     public:
