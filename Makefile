@@ -5,7 +5,7 @@ clean:
 	rm 4d
 
 build:
-	g++ main.cpp -o 4d -lcurl -g
+	g++ main.cpp -o 4d -lcurl -g -Wall
 
 run:
 	# ./4d "https://boards.4chan.org/gif/thread/28218474" test_000 10

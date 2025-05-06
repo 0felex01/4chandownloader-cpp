@@ -51,7 +51,7 @@ size_t write_data(void *ptr, size_t size, size_t nmemb, FILE *stream) {
 int32_t makeJSONURL(URL &url) {
     // Find all slashes in URL (such as https://boards.4chan.org/c/thread/4322780)
     std::vector<int16_t> slashes;
-    for (int i = 0; i < url.address.length(); ++i) {
+    for (long unsigned int i = 0; i < url.address.length(); ++i) {
         if (url.address[i] == '/') {
             slashes.push_back(i);
         }
